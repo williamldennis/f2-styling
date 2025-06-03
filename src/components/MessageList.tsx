@@ -36,7 +36,7 @@ const messageList: MessageData[] = [
 
 export default function MessageList() {
     return (
-        <div>
+        <div className="w-full">
             <Message
                 data={messageList[0]}
             />
