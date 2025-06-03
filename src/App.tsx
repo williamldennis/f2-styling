@@ -1,60 +1,71 @@
 import { useState } from 'react'
 import './App.css'
 import Task, { type TaskProps } from './components/Task';
-import { clsx } from 'clsx';
 
+export type TaskData = {
+  id: number,
+  title: string,
+  body: string,
+  checked: boolean
+}
 
-const taskList = [
+const taskList: TaskData[] = [
   {
     "id": 1,
     "title": "Dishwashing",
-    "body": "Wash and dry dishes, pots, pans, and utensils"
+    "body": "Wash and dry dishes, pots, pans, and utensils",
+    "checked": false
   },
   {
     "id": 2,
     "title": "Laundry",
-    "body": "Wash, dry, fold, and put away clothes and linens."
+    "body": "Wash, dry, fold, and put away clothes and linens.",
+    "checked": false
   },
   {
     "id": 3,
     "title": "Vacuuming",
-    "body": "Vacuum carpets, rugs, and floors throughout the house."
-  },
-  {
-    "id": 3,
-    "title": "Dusting",
-    "body": "Dust furniture, shelves, and other surfaces"
+    "body": "Vacuum carpets, rugs, and floors throughout the house.",
+    "checked": false
   },
   {
     "id": 4,
-    "title": "Sweep the Kitchen",
-    "body": "Get under the cabinets, do a good job"
+    "title": "Dusting",
+    "body": "Dust furniture, shelves, and other surfaces",
+    "checked": false
   }
 ]
 
-
 function TaskList() {
+  const [tasks, setTasks] = useState(taskList)
+  const sortedTasks = [...tasks].sort((a, b) => Number(a.checked) - Number(b.checked));
+
+  const handleCheckBox = (id: number) => {
+    console.log("clicked");
+
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === id ? { ...task, checked: !task.checked } : task)
+    )
+  }
+
   return (
     <>
       <Task
-        id={taskList[0].id}
-        title={taskList[0].title}
-        body={taskList[0].body}
+        data={sortedTasks[0]}
+        handleCheckBox={handleCheckBox}
       />
       <Task
-        id={taskList[1].id}
-        title={taskList[1].title}
-        body={taskList[1].body}
+        data={sortedTasks[1]}
+        handleCheckBox={handleCheckBox}
       />
       <Task
-        id={taskList[2].id}
-        title={taskList[2].title}
-        body={taskList[2].body}
+        data={sortedTasks[2]}
+        handleCheckBox={handleCheckBox}
       />
       <Task
-        id={taskList[3].id}
-        title={taskList[3].title}
-        body={taskList[3].body}
+        data={sortedTasks[3]}
+        handleCheckBox={handleCheckBox}
       />
     </>
   )
@@ -66,12 +77,6 @@ function App() {
     <>
       <div className='bg-gray-200 h-screen w-screen absolute flex justify-center'>
         <div>
-          <div className='m-6'>Task</div>
-          <Task
-            id={taskList[4].id}
-            title={taskList[4].title}
-            body={taskList[4].body}
-          />
           <div className='m-6'>Task List</div>
           <TaskList />
         </div>
