@@ -5,11 +5,11 @@ import MessageList from './components/MessageList';
 function App() {
   return (
     <>
-      <div className='bg-gray-800 h-screen w-screen absolute flex justify-center'>
+      <div className='bg-gray-800 p-10 w-screen absolute flex justify-center'>
         <div className='w-full'>
-          {/* <div className='m-6'>Task List</div>
-          <TaskList /> */}
-          <div className='m-6'>Messages</div>
+          <div className='mb-12 mt-12 text-white'>Task List</div>
+          <TaskList />
+          <div className='mb-12 mt-12 text-white'>Messages</div>
           <MessageList />
         </div>
       </div>
