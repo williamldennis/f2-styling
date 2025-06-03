@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import type { TaskData } from '../App';
+import type { TaskData } from './TaskList';
 
 export type TaskProps = {
     data: TaskData,
