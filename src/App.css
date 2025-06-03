@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lusitana:wght@400;700&family=Manrope:wght@200..800&display=swap');
-
 @import "tailwindcss";
 
 
 @theme {
   --font-display: "Inter";
   --breakpoint-3xl: 120rem;
-  --color-box-unchecked-border: #D8D8D8;
+  --color-task-border: #D8D8D8;
   --color-box-checked: #359845;
   --color-body: #7D7D7D;
+  --color-body-checked: #E2FFE5;
   --color-title: #000000;
 
   /* ... */
