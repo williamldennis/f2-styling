@@ -4,7 +4,6 @@
 
 @theme {
   --font-display: "Inter";
-  --breakpoint-3xl: 120rem;
   --color-task-border: #D8D8D8;
   --color-box-checked: #359845;
   --color-body: #7D7D7D;
