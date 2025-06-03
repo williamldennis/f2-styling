@@ -1,24 +1,12 @@
 import { clsx } from 'clsx';
-import { useState } from 'react'
+import type { TaskData } from '../App';
 
 export type TaskProps = {
-    id: number,
-    title: string,
-    body: string
+    data: TaskData,
+    handleCheckBox: (id: number) => void
 }
 
-export default function Task({ id, title, body }: TaskProps) {
-    const [checked, setChecked] = useState(false)
-
-    const handleCheckBox = () => {
-        console.log("clicked");
-
-        setChecked(prev => !prev)
-        console.log({ checked })
-
-        return checked
-
-    }
+export default function Task({ data, handleCheckBox }: TaskProps) {
 
     const taskBodyUnchecked = clsx(
         'flex flex-row border-1 border-task-border h-18 w-100 bg-white rounded-lg items-center'
@@ -40,17 +28,17 @@ export default function Task({ id, title, body }: TaskProps) {
         <>
             <div>
                 <div className='flex flex-column items-center m-6'>
-                    <div className={!checked ? taskBodyUnchecked : taskBodyChecked}>
+                    <div className={!data.checked ? taskBodyUnchecked : taskBodyChecked}>
                         <button
-                            className={!checked ? taskBoxUnchecked : taskBoxChecked}
-                            onClick={() => handleCheckBox()}
+                            className={!data.checked ? taskBoxUnchecked : taskBoxChecked}
+                            onClick={() => handleCheckBox(data.id)}
                         />
                         <div className='p-4 '>
                             <p className='font-[inter] font-light'>
-                                {title}
+                                {data.title}
                             </p>
                             <p className='font-[inter] text-xs text-body font-light mt-1'>
-                                {body}
+                                {data.body}
                             </p>
                         </div>
                     </div>
