@@ -34,21 +34,41 @@ const messageList: MessageData[] = [
     }
 ]
 
+
+
 export default function MessageList() {
+
+    const messageType = (index: number): string => {
+        //base image -- fromMe.id != fromMe.id-1 && fromMe.id != fromMe.id+1
+        if (messageList[index].fromMe != messageList[index - 1]?.fromMe && messageList[index].fromMe != messageList[index + 1]?.fromMe) {
+            return 'base' // something
+        }
+        //top image -- same sender below 
+        if (messageList[index].fromMe != messageList[index - 1]?.fromMe && messageList[index].fromMe == messageList[index + 1]?.fromMe) {
+            return 'top' // something
+        }
+        //bottom image
+        if (messageList[index].fromMe == messageList[index - 1]?.fromMe && messageList[index].fromMe != messageList[index + 1]?.fromMe) {
+            return 'bottom' // something
+        }
+        //middle image
+        if (messageList[index].fromMe == messageList[index - 1]?.fromMe && messageList[index].fromMe == messageList[index + 1]?.fromMe) {
+            return 'middle' // something
+        }
+
+        return 'base'
+    }
     return (
-        <div className="w-full">
-            <Message
-                data={messageList[0]}
-            />
-            <Message
-                data={messageList[1]}
-            />
-            <Message
-                data={messageList[2]}
-            />
-            <Message
-                data={messageList[3]}
-            />
+        <div className="">
+            {messageList.map((message, index) =>
+                <Message
+                    data={message}
+                    messageType={messageType(index)}
+                />
+
+            )}
+
+
         </div>
     )
 }
